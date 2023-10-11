@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% from 'bootstrap5/form.html' import render_form %}
+
+{% block content %}
+
+<div class="container my-5">
+  <!-- Header Section -->
+  <div class="row">
+    <div class="col-md-8">
+      <h1 class="display-4">{{ destination.name }}</h1>
+      <span class="badge badge-primary">Popular Destination</span>
+    </div>
+  </div>
+
+  <!-- Destination Section -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card shadow-lg mb-5">
+        <div class="card-body">
+          <div class="media">
+            <img class="align-self-start mr-3 rounded" src="{{ destination.image }}" style="width: 100%; height: auto;">
+            <div class="media-body">
+              <span class="d-block text-muted">Stay 2 nights</span>
+              <h4>{{ destination.name }}</h4>
+              <p class="lead">{{ destination.description }}</p>
+              <a href="#" class="btn btn-danger btn-lg">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comments Section -->
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="mb-4">Comments</h2>
+    </div>
+  </div>
+
+  <div class="row border-bottom pb-4">
+    <div class="col-md-12 mb-4">
+      {{ render_form(form,"/destinations/{0}/comment".format(destination.id)) }}
+    </div>
+
+    {% for comment in destination.comments %}
+    <div class="col-md-12 mb-3">
+      <h5>{{ comment.user.name }} <small class="text-muted ml-2">{{year}}</small></h5>
+      <p class="ml-3">{{ comment.text }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}
