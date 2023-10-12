@@ -46,7 +46,7 @@
 
     {% for comment in destination.comments %}
     <div class="col-md-12 mb-3">
-      <h5>{{ comment.user.name }} <small class="text-muted ml-2">{{year}}</small></h5>
+      <h5>{{ comment.user.name }} <small class="text-muted ml-2">{{ comment.created_at }}</small></h5>
       <p class="ml-3">{{ comment.text }}</p>
     </div>
     {% endfor %}
